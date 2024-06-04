@@ -7,6 +7,16 @@ export const POST = async (req: Request) => {
         const { name, email, password, age, weight, gender, heightFeet, heightInches } = await req.json();
         if (!name || !email || !password)
             return NextResponse.json({ message: "Invalid Data" }, { status: 422 })
+        const findUser = await prisma.user.findUnique({
+            where: {
+                email: email
+            }
+        })
+        if (findUser) {
+            return NextResponse.json({
+                message: "Email Already Used , Please Try with different email"
+            }, { status: 400 })
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
         await connectToDatabase()
         const newUser = await prisma.user.create({ data: { email, name, password: hashedPassword, age, weight, gender, heightFeet, heightInches } })
