@@ -14,21 +14,13 @@ datasource db {
 }
 
 model User {
-  id             String  @id @default(auto()) @map("_id") @db.ObjectId
-  name           String?
-  email          String  @unique
-  hashedPassword String
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  email        String  @unique
+  name         String?
+  password     String
+  age          Int
+  weight       Int
+  gender       String
+  heightFeet   Int
+  heightInches Int
 }
-
-// model User {
-//   id             String  @id @default(auto()) @map("_id") @db.ObjectId
-//   email          String  @unique
-//   name           String?
-//   username       String
-//   hashedPassword String
-//   age            Int
-//   Weight         Int
-//   Gender         String
-//   heightFeet     Int
-//   heightInches   Int
-// }
