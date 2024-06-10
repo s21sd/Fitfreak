@@ -22,6 +22,8 @@ interface RegisterSchema {
 export const POST = async (req: Request) => {
     try {
         const { action, ...data } = await req.json();
+        console.log(action)
+        console.log(data)
 
         if (action === "login") {
             return await handleLogin(data as LoginSchema);
