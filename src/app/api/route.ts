@@ -2,6 +2,7 @@ import { connectToDatabase } from "@/app/helper/server-helper";
 import { NextResponse } from "next/server";
 import prisma from "../../../prisma";
 import bcrypt from 'bcrypt';
+import { RegisterValidator } from "@/validation/authSchema";
 
 interface LoginSchema {
     email: string;
@@ -24,11 +25,13 @@ export const POST = async (req: Request) => {
         const { action, ...data } = await req.json();
         console.log(action)
         console.log(data)
+        const payload = await RegisterValidator.validate(data)
+        console.log(payload)
 
         if (action === "login") {
-            return await handleLogin(data as LoginSchema);
+            return await handleLogin(payload as LoginSchema);
         } else if (action === "register") {
-            return await handleRegister(data as RegisterSchema);
+            return await handleRegister(payload as RegisterSchema);
         } else {
             return NextResponse.json({ message: "Invalid action" }, { status: 400 });
         }

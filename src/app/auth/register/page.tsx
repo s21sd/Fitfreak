@@ -6,7 +6,6 @@ import { GiBodyHeight } from "react-icons/gi";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
-import { RegisterValidator } from '@/validations/authSchema';
 const page = () => {
     const router = useRouter();
     const [formValue, setFormValue] = useState({
