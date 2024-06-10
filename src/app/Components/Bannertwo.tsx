@@ -71,8 +71,8 @@ const Bannertwo = () => {
     }, [])
 
     return (
-        <div>
-            <div className="loader text-center ">
+        <div className='m-5'>
+            <div className="loader text-center z-0">
                 <p className="text text-[150px]">
                     Workouts
                 </p>
@@ -109,6 +109,9 @@ const Bannertwo = () => {
                                     style={{
                                         backgroundImage: `url(${item.imageUrl})`
 
+                                    }}
+                                    onClick={() => {
+                                        window.location.href = `/workout/${item.type}`
                                     }}
                                 >
                                     <div className='swiper-slide-content'>

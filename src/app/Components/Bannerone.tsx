@@ -1,8 +1,16 @@
 "use client"
 import React, { useEffect, useState } from 'react'
+import './Bannerone.css'
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { FaEye } from "react-icons/fa6";
+
 
 const Bannerone = () => {
     const [data, setData] = useState<any>(null)
+    const percentage = 66;
+
+
     const getData = async () => {
         let temp = [
             {
@@ -55,7 +63,37 @@ const Bannerone = () => {
         getData()
     }, [])
     return (
-        <div>Bannerone</div>
+
+        <div className='flex  justify-between items-center m-5 cursor-pointer'>
+            {
+                data && data.map((item: any, index: number) => {
+                    return (
+                        <div key={index} className="card">
+                            <div className='flex justify-between items-center gap-2 m-2'>
+
+                                <div className='bg-white shadow-md rounded-md w-[120px] h-[100px] mt-3 flex flex-col justify-center items-center gap-2'>
+                                    <h1 className='font-bold text-black text-sm'>{item.name}</h1>
+                                    <h1 className='text-sm font-semibold text-gray'>{item.value}</h1>
+                                </div>
+                                <div className='bg-white shadow-md rounded-md w-[120px] h-[100px] mt-3 flex flex-col justify-center items-center gap-2'>
+                                    <h1 className='font-bold text-black text-sm' >Target</h1>
+                                    <h1 className='text-sm font-semibold text-gray'>{item.goal}{item.goalUnit}</h1>
+                                </div>
+                            </div>
+                            <div className='w-[50px] mx-auto'>
+                                <CircularProgressbar value={percentage} text={`${percentage}%`} />
+                            </div>
+                            <div className='mx-auto flex justify-center items-center gap-2 bg-white rounded-md p-2 w-fit mt-3'>
+                                <h1>Show Report </h1>
+                                <FaEye />
+                            </div>
+
+                        </div>
+                    )
+                })
+            }
+        </div>
+
     )
 }
 
