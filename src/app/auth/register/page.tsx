@@ -29,6 +29,10 @@ const page = () => {
     }
     const handleSignUp = async (e: any) => {
         e.preventDefault();
+        if (parseInt(formValue.heightInches) > 11) {
+            toast.error('Inches can not more than 11')
+        }
+
         try {
             const response = await fetch('/api', {
                 method: 'POST',
@@ -120,7 +124,7 @@ const page = () => {
                     </div>
                 </div>
 
-                <button type='submit' className="button-submit">Singn Up</button>
+                <button type='submit' className="button-submit">Sign Up</button>
                 <p className="p">Don't have an account? <span className="span" onClick={() => router.push('/auth/login')} >Sign In</span>
                 </p>
             </form>
