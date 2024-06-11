@@ -9,11 +9,12 @@ import 'swiper/css/pagination';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
+import { useRouter } from 'next/navigation';
 
 
 const Bannertwo = () => {
     const [workouts, setWorkouts] = React.useState<any[] | null>(null)
-
+    const router = useRouter();
     const getworkouts = async () => {
         let data: any = [
             {
@@ -69,7 +70,9 @@ const Bannertwo = () => {
     React.useEffect(() => {
         getworkouts()
     }, [])
-
+    const handleButtonClick = (type: string) => {
+        router.push(`/workout/${type}`);
+    };
     return (
         <div className='m-5'>
             <div className="loader text-center z-0">
@@ -110,9 +113,7 @@ const Bannertwo = () => {
                                         backgroundImage: `url(${item.imageUrl})`
 
                                     }}
-                                    onClick={() => {
-                                        window.location.href = `/workout/${item.type}`
-                                    }}
+                                    onClick={() => handleButtonClick(item.type)}
                                 >
                                     <div className='swiper-slide-content'>
                                         <h2>{item.type}</h2>
