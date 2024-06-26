@@ -334,7 +334,7 @@ const Page = () => {
                                             : 'workout__exercise workout__exercise--reverse'
                                     }
                                 >
-                                    <h3>{exIndex + 1}</h3>
+                                    <h1>{exIndex + 1}</h1>
                                     <div className='workout__exercise__image'>
                                         <img src={exercise.videoUrl} alt={exercise.exercise} />
                                     </div>
